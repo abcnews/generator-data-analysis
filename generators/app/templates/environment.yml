@@ -1,0 +1,8 @@
+name: <%= env %>
+dependencies:
+- pip
+- python=3
+- pandas
+- matplotlib
+- seaborn
+- statsmodels
