@@ -20,6 +20,16 @@ module.exports = yeoman.Base.extend({
       name: 'env',
       message: 'Conda environment:',
       default: path.basename(process.cwd())
+    }, {
+      type: 'confirm',
+      name: 'createEnv',
+      message: 'Do you want to create the Conda environment?',
+      default: true
+    }, {
+      type: 'confirm',
+      name: 'initGit',
+      message: 'Do you want to initialise a Git repository?',
+      default: true
     }];
 
     return this.prompt(prompts).then(function (props) {
@@ -37,7 +47,11 @@ module.exports = yeoman.Base.extend({
   },
 
   install: function () {
-    this.spawnCommand('conda', ['env', 'create']);
-    this.spawnCommand('git', ['init']);
+    if (this.props.createEnv) {
+      this.spawnCommand('conda', ['env', 'create']);
+    }
+    if (this.props.initGit) {
+      this.spawnCommand('git', ['init']);
+    }
   }
 });

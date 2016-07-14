@@ -6,7 +6,7 @@ const helpers = require('yeoman-test');
 describe('generator-data-analysis:app', function () {
   before(function () {
     return helpers.run(path.join(__dirname, '../generators/app'))
-      .withPrompts({name: 'test', env: 'test'})
+      .withPrompts({name: 'test', env: 'test', initGit: false, createEnv: false})
       .toPromise();
   });
 
